@@ -1,0 +1,17 @@
+{% extends 'productos/base_crud_producto.html' %}
+
+{% block titulo_formulario_cliente %}
+    <div class="cliente" style="margin-left: 230px; font-size: 22px">
+         <i class="fa fa-edit page-header-icon"></i>&nbsp;Modificar Producto
+    </div>
+{% endblock %}
+
+{% block boton_accion_cliente %}
+    <button type="submit" class="btn btn-primary">Modificar</button>
+{% endblock %}
+
+{% block scripts_crud %}
+    <script>
+        $('#id_vehplaca').prop('readonly', true);
+    </script>
+{% endblock %}

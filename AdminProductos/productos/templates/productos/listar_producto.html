@@ -1,0 +1,102 @@
+{% extends 'productos/base_producto.html' %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+    {% include 'productos/alerts.html' %}
+    <div class="page-header">
+        <div class="row">
+            <!-- Page header, center on small screens -->
+            <h1 class="col-xs-12 col-sm-4 text-center text-left-sm" >
+                <i class="fa fa-edit page-header-icon" ></i>Administración de Productos
+            </h1>
+            <div class="col-xs-12 col-sm-8">
+                <div class="row">
+                    <hr class="visible-xs no-grid-gutter-h">
+                    <!-- "Create project" button, width=auto on desktops -->
+                    <div class="pull-right col-xs-12 col-sm-auto">
+                        <a href="{% url 'producto:adicionar_producto' %}">
+                            <button class="btn  btn-labeled btn-primary" >
+                               <span class="btn-label icon fa fa-plus"></span>
+                                Adicionar Producto
+                            </button>&nbsp;&nbsp;
+                        </a>
+                    </div>
+                    <div class="pull-right col-xs-12 col-sm-auto">
+                        <a href="{% url 'producto:reporte_producto' %}">
+                            <button class="btn  btn-labeled btn-primary" >
+                               <span class="btn-label icon fa fa-file-text"></span>
+                                Reporte xls
+                            </button>&nbsp;&nbsp;
+                        </a>
+                    </div>
+
+
+                    <!-- Margin -->
+                    <div class="visible-xs clearfix form-group-margin"></div>
+                    <!-- Search field -->
+                </div>
+            </div>
+        </div>
+    </div> <!-- / .page-header -->
+    <!-- / Javascript -->
+    <div class="panel">
+        <div class="panel-body">
+            <div class="table-primary">
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>nombre</th>
+                            <th>precio </th>
+                            <th>informacion </th>
+                            <th>fecha_adquision</th>
+                            <th>foto</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos %}
+                            <tr class="odd gradeX">
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ producto.nombre }}</td>
+                                <td>{{ producto.precio }}</td>
+                                <td>{{ producto.informacion }}</td>
+                                <td>{{ producto.fecha_adquision }}</td>
+                                <td>{{ producto.imagen }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{% url 'producto:visualizar_producto' producto.id %}" class="btn btn-primary">Visualizar</a>
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" >
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" style="margin-top: 10px;">
+                                            <li>
+                                                <a href="{% url 'producto:modificar_producto' producto.id %}" >Modificar</a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'producto:eliminar_producto' producto.id %}"  style="background: #ac2919 !important;border: #ac2919">Eliminar</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        init.push(function ()
+        {
+            $('#jq-datatables-example').dataTable();
+            $('#jq-datatables-example_wrapper .table-caption').text('Listado de productos');
+            $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Buscar...');
+        });
+    </script>
+{% endblock %}

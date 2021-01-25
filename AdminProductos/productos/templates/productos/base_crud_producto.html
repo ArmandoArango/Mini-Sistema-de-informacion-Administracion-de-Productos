@@ -1,0 +1,71 @@
+{% extends 'productos/base_producto.html' %}
+{% load static %}
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+    {% include 'productos/alerts.html' %}
+    <div class="page-header">
+        <div class="row">
+            <h1 class="col-xs-12 col-sm-4 text-center text-left-sm">
+                <i class="fa fa-edit page-header-icon"></i>
+                &nbsp;&nbsp;Administrar Productos
+            </h1>
+        </div>
+    </div>
+    <div class="profile-full-name">
+        <span class="text-semibold">
+            {% block titulo_formulario_cliente %}
+            {% endblock %}
+        </span>
+    </div>
+    <div class="profile-row">
+        <div class="left-col">
+            <div class="profile-block">
+                <div class="panel profile-photo">
+                    <img src="{% static 'demo/logo.png' %}" >
+                </div>
+            </div>
+        </div>
+        <div class="right-col">
+            <hr class="profile-content-hr no-grid-gutter-h">
+            <div class="profile-content">
+                <div class="panel">
+                    <br><br>
+                    <form method="post" id="form_cliente" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        {% include 'productos/from_producto.html' %}
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                {% block boton_accion_cliente %}
+                                {% endblock %}
+                                <a href="{% url 'producto:listar_producto' %}">
+                                    <button type="button" class="btn btn-danger">Salir</button>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        init.push(function ()
+        {
+            $('body').addClass("page-profile");
+            $('#item_usuario').addClass("active");
+        });
+
+        window.PixelAdmin.start(init);
+    </script>
+
+    {% block scripts_crud %}
+    {% endblock %}
+{% endblock %}
+

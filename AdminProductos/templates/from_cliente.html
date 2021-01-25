@@ -1,0 +1,11 @@
+{% for field in form %}
+    <div class="form-group">
+        {{ field.errors }}
+        <label for="jq-validation-url" class="col-sm-3 control-label">
+            <strong>{{ field.label }}</strong>
+        </label>
+        <div class="col-sm-9">
+            {{ field }}
+        </div>
+    </div>
+{% endfor %}

@@ -1,0 +1,202 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="ie9 gt-ie8"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="gt-ie8 gt-ie9 not-ie"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Mini Sistema de informacion: Administracion de Productos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+	<!-- Open Sans font from Google CDN -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
+
+	<!-- Pixel Admin's stylesheets -->
+	<link href="{% static 'stylesheets/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'stylesheets/pixel-admin.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'stylesheets/pages.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'stylesheets/rtl.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'stylesheets/themes.min.css' %}" rel="stylesheet" type="text/css">
+
+	<!--[if lt IE 9]>
+		<script src="{% static 'javascripts/ie.min.js' %}"></script>
+	<![endif]-->
+
+
+<!-- $DEMO =========================================================================================
+
+<!-- / $DEMO -->
+
+</head>
+
+
+<!-- 1. $BODY ======================================================================================
+
+	Body
+
+	Classes:
+	* 'theme-{THEME NAME}'
+	* 'right-to-left'     - Sets text direction to right-to-left
+-->
+<body class="theme-asphalt page-signin">
+
+<script>
+	var init = [];
+</script>
+
+	<!-- Page background -->
+	<div id="page-signin-bg">
+		<!-- Background overlay -->
+		<div class="overlay"></div>
+		<!-- Replace this with your bg image -->
+		<img src="{% static 'demo/fondo.jpg' %}" alt="">
+	</div>
+	<!-- / Page background -->
+
+	<!-- Container -->
+	<div class="signin-container">
+
+		<!-- Left side -->
+		<div class="signin-info">
+			<a href="" class="logo">
+                <div style="text-align: center;">
+				    <img src="{% static 'demo/logo.png' %}"width="170" alt="" style="margin-top: -5px;">Mini Sistema de informacion: Administracion de Productos
+                </div>
+			</a> <!-- / .logo -->
+			<!-- / Info list -->
+		</div>
+		<!-- / Left side -->
+
+		<!-- Right side -->
+		<div class="signin-form">
+            <div id="alerts">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger fade in">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Error!</strong> {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+			<!-- Form -->
+			<form method="post" id="signin-form_id">
+                {% csrf_token %}
+				<div class="signin-text">
+					<span>Ingresa con tu Cuenta</span>
+				</div> <!-- / .signin-text -->
+
+				<div class="form-group w-icon">
+					<input type="text" name="signin_username" id="username_id" class="form-control input-lg" placeholder="Nombre de Usuario">
+					<span class="fa fa-user signin-form-icon"></span>
+				</div> <!-- / Username -->
+
+				<div class="form-group w-icon">
+					<input type="password" name="signin_password" id="password_id" class="form-control input-lg" placeholder="Clave">
+					<span class="fa fa-lock signin-form-icon"></span>
+				</div> <!-- / Password -->
+
+                <div class="form-actions">
+					<a href="{% url 'productos:listar_producto' %}" class="signin-btn bg-primary">Ingresar</a>
+					<a href="{% url 'registro' %}" class="signin-btn bg-primary">Registrar</a>
+				</div>
+                <div class="error-message" STYLE="margin-top: 10px;">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque dolores eaque et facere iure
+                        magni minima nulla obcaecati omnis placeat porro possimus quidem quis quos, rem suscipit tempora
+                        totam ullam.</p>
+                    <p>Consectetur dicta natus nemo nihil pariatur quis suscipit veniam voluptatibus? Aspernatur commodi
+                        cupiditate deserunt dolor earum, ex expedita illum ipsam maiores mollitia nobis perspiciatis
+                        quos, ratione reiciendis suscipit tempore vitae.</p>
+                    <p>Accusantium ad cum cumque distinctio dolores ducimus ea eaque fugit ipsa laboriosam nostrum
+                        obcaecati officiis quam qui rerum, totam, vero. Ad aperiam culpa delectus dignissimos eligendi
+                        fugiat iste minima quia?</p>
+                    <p>Adipisci dolores nihil quo quod. Dignissimos impedit iusto laborum magnam nobis tempore vitae.
+                        Beatae debitis dolore, eaque esse, est expedita explicabo maxime mollitia necessitatibus nihil
+                        quae quis repudiandae soluta voluptates!</p>
+                </div>
+                <!-- / .form-actions -->
+                <!-- / .form-actions -->
+			</form>
+			<!-- / Form -->
+        </div>
+		<!-- Right side -->
+	</div>
+	<!-- / Container -->
+
+<!-- Get jQuery from Google CDN -->
+<!--[if !IE]> -->
+	<script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">'+"<"+"/script>"); </script>
+<!-- <![endif]-->
+<!--[if lte IE 9]>
+	<script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
+<![endif]-->
+
+
+<!-- Pixel Admin's javascripts -->
+<script src="{% static 'javascripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'javascripts/pixel-admin.min.js' %}"></script>
+
+<script type="text/javascript">
+	// Resize BG
+	init.push(function () {
+		var $ph  = $('#page-signin-bg'),
+		    $img = $ph.find('> img');
+
+		$(window).on('resize', function () {
+			$img.attr('style', '');
+			if ($img.height() < $ph.height()) {
+				$img.css({
+					height: '100%',
+					width: 'auto'
+				});
+			}
+		});
+	});
+
+	// Show/Hide password reset form on click
+	init.push(function () {
+		$('#forgot-password-link').click(function () {
+			$('#password-reset-form').fadeIn(400);
+			return false;
+		});
+		$('#password-reset-form .close').click(function () {
+			$('#password-reset-form').fadeOut(400);
+			return false;
+		});
+	});
+
+	// Setup Sign In form validation
+	init.push(function () {
+		$("#signin-form_id").validate({ focusInvalid: true, errorPlacement: function () {} });
+
+		// Validate username
+		$("#username_id").rules("add", {
+			required: true,
+			minlength: 3
+		});
+
+		// Validate password
+		$("#password_id").rules("add", {
+			required: true,
+			minlength: 6
+		});
+	});
+
+	// Setup Password Reset form validation
+	init.push(function () {
+		$("#password-reset-form_id").validate({ focusInvalid: true, errorPlacement: function () {} });
+
+		// Validate email
+		$("#p_email_id").rules("add", {
+			required: true,
+			email: true
+		});
+	});
+
+	window.PixelAdmin.start(init);
+</script>
+
+</body>
+</html>
